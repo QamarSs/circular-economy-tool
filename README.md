@@ -2,8 +2,8 @@
 
 A full-stack web app that lets users assess the circular-economy potential of a
 product: enter product info, rate current (IST) vs. target (SOLL) state across
-circularity criteria, and get a radar chart, an overall Circular Score, the
-top 3 improvement areas, and suggested actions.
+circularity criteria, and get a circular profile, category radar chart, overall
+Circular Score, top 3 improvement areas, and suggested actions.
 
 ## Architecture
 
@@ -106,5 +106,5 @@ Response:
   `database/cepm.sqlite` first, since seeding only runs on an empty table).
 - The frontend's "Save Locally" button stores the last 20 results in the
   browser's `localStorage` under the key `cepm_saved_assessments`.
-- "Export to PDF" renders the results panel (radar chart, score gauge, top 3
+- "Export to PDF" renders the results panel (circular profile, radar chart, score gauge, top 3
   + recommendations) to a PDF using `html2canvas` + `jspdf`.

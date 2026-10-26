@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import type { AssessmentResult } from "../types";
+import CircularRadarProfile from "./CircularRadarProfile";
 import RadarChartView from "./RadarChartView";
 import ScoreGauge from "./ScoreGauge";
 import TopImprovements from "./TopImprovements";
@@ -76,6 +77,8 @@ export default function ResultsView({ result, onStartOver }: Props) {
             <span>Date: <span className="text-gray-800 font-medium">{new Date(result.assessment.createdAt).toLocaleDateString()}</span></span>
           </div>
         </div>
+
+        <CircularRadarProfile scores={result.scores} />
 
         {/* Radar + Score */}
         <div className="grid sm:grid-cols-2 gap-6 mb-6">
