@@ -20,6 +20,7 @@ The results page is also the PDF report body. The report includes the product su
 - `frontend/src/components/AssessmentForm.tsx`: category-grouped scoring questions.
 - `frontend/src/components/ResultsView.tsx`: report composition, local save, PDF export, and new-assessment action.
 - `frontend/src/components/CircularRadarProfile.tsx`: reference-style annular results chart with criterion segments, category groups, 1–5 rings, and current/target polygons.
+- `frontend/src/index.css` and `frontend/tailwind.config.js`: shared typography, accessibility focus states, motion preference, and brand color tokens.
 - `frontend/src/components/RadarChartView.tsx`: supporting criterion-level radar visualization.
 - `frontend/src/components/ScoreGauge.tsx`: overall score and classification.
 - `frontend/src/components/TopImprovements.tsx`: top improvement criteria and recommendations.
@@ -57,7 +58,9 @@ When changing request/response behavior, update `frontend/src/types.ts`, the API
 
 - Use React function components and TypeScript; prefer existing project types over duplicate interfaces.
 - Follow the double-quoted TSX style used in the frontend.
-- Use Tailwind utility classes and the existing `brand-*` theme tokens.
+- Use Tailwind utility classes and the shared theme tokens. The InnoLink-inspired palette uses slate gray `#96959F`, blue `#2F5AAE`, warm off-white surfaces, and restrained TU Braunschweig-inspired red `#A6192E`.
+- Keep the product landing page's primary CTA linked to the product form and the process link anchored to the process section.
+- Preserve visible keyboard focus, responsive horizontal layouts, and reduced-motion preferences.
 - Keep local storage key `cepm_saved_assessments` and leave report action buttons outside the PDF capture area.
 - Surface errors explicitly; do not silently suppress API or export failures.
 

@@ -65,13 +65,14 @@ export default function ResultsView({ result, onStartOver }: Props) {
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="mx-auto max-w-7xl">
       <div ref={reportRef} className="bg-gray-50 p-1">
         {/* Header / product info */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sm:p-8 mb-6">
-          <p className="text-xs uppercase tracking-wide text-brand-600 font-semibold mb-1">Assessment Result</p>
-          <h1 className="text-2xl font-bold mb-2">{result.product.name}</h1>
-          <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-gray-500">
+        <div className="relative mb-6 overflow-hidden rounded-panel bg-slateHero p-6 text-white shadow-card sm:p-8">
+          <span className="absolute inset-y-0 left-0 w-1.5 bg-tubs-red" />
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/80">03 / Assessment result</p>
+          <h1 className="mb-3 font-editorial text-3xl font-bold sm:text-4xl">{result.product.name}</h1>
+          <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-white/80">
             <span>Category: <span className="text-gray-800 font-medium">{result.product.category}</span></span>
             <span>Stage: <span className="text-gray-800 font-medium">{STAGE_LABELS[result.product.developmentStage]}</span></span>
             <span>Date: <span className="text-gray-800 font-medium">{new Date(result.assessment.createdAt).toLocaleDateString()}</span></span>
@@ -93,23 +94,23 @@ export default function ResultsView({ result, onStartOver }: Props) {
       </div>
 
       {/* Actions (outside the PDF capture area) */}
-      <div className="flex flex-wrap gap-3 justify-center mt-2 mb-10">
+      <div className="mt-3 mb-10 flex flex-wrap justify-center gap-3">
         <button
           onClick={handleExportPdf}
           disabled={exporting}
-          className="rounded-lg bg-brand-600 text-white px-5 py-2.5 text-sm font-medium hover:bg-brand-700 disabled:opacity-60"
+          className="rounded-md bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:opacity-60"
         >
           {exporting ? "Generating PDF…" : "Export to PDF"}
         </button>
         <button
           onClick={handleSaveLocally}
-          className="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          className="rounded-md border border-line bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 transition hover:border-brand-600 hover:text-brand-700"
         >
           {saved ? "Saved ✓" : "Save Locally"}
         </button>
         <button
           onClick={onStartOver}
-          className="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          className="rounded-md border border-tubs-red/30 bg-white px-5 py-2.5 text-sm font-semibold text-tubs-red transition hover:border-tubs-red hover:bg-paleRed"
         >
           Start New Assessment
         </button>

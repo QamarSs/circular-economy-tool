@@ -84,18 +84,18 @@ export default function AssessmentForm({ categories, onSubmit, onBack }: Props) 
   }
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="mx-auto max-w-5xl">
       {/* Strategic field / category progress */}
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="mb-6 flex gap-2 overflow-x-auto pb-2">
         {categories.map((cat, idx) => (
           <span
             key={cat.id}
-            className={`text-xs px-3 py-1 rounded-full font-medium ${
+            className={`shrink-0 rounded-md border px-3 py-2 text-xs font-medium ${
               idx === activeCategoryIndex
-                ? "bg-brand-600 text-white"
+                ? "border-brand-600 bg-brand-600 text-white"
                 : idx < activeCategoryIndex
-                ? "bg-brand-100 text-brand-700"
-                : "bg-gray-100 text-gray-500"
+                ? "border-paleRed bg-paleRed text-tubs-red"
+                : "border-line bg-white text-gray-500"
             }`}
           >
             {cat.name}
@@ -103,16 +103,19 @@ export default function AssessmentForm({ categories, onSubmit, onBack }: Props) 
         ))}
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sm:p-8">
-        <h2 className="text-xl font-semibold mb-1">{activeCategory.name}</h2>
-        <p className="text-sm text-gray-500 mb-6">
+      <div className="rounded-panel border border-line bg-white p-5 shadow-card sm:p-8">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-tubs-red">
+          02 / Circularity assessment · {activeCategoryIndex + 1} of {categories.length}
+        </p>
+        <h2 className="font-editorial text-2xl font-bold sm:text-3xl">{activeCategory.name}</h2>
+        <p className="mb-6 mt-2 max-w-3xl text-sm leading-6 text-muted">
           Rate the current state (IST) and target state (SOLL) for each criterion, from 1 (does not apply at all) to 5 (fully applies).
         </p>
 
         <div className="space-y-6">
           {activeCategory.criteria.map((criterion) => (
-            <div key={criterion.id} className="border border-gray-100 rounded-xl p-4 bg-gray-50/60">
-              <h3 className="font-medium text-sm mb-1">{criterion.name}</h3>
+            <div key={criterion.id} className="rounded-xl border border-line bg-canvas/70 p-4 sm:p-5">
+              <h3 className="mb-1 text-sm font-semibold">{criterion.name}</h3>
               <p className="text-xs text-gray-500 mb-1">{criterion.description}</p>
               {criterion.bestPractice && (
                 <p className="text-[11px] text-gray-400 mb-3">
@@ -141,13 +144,13 @@ export default function AssessmentForm({ categories, onSubmit, onBack }: Props) 
         <div className="flex justify-between mt-8">
           <button
             onClick={handlePrev}
-            className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="rounded-md border border-line bg-white px-4 py-2.5 text-sm font-semibold text-gray-700 transition hover:border-brand-600 hover:text-brand-700"
           >
             ← Back
           </button>
           <button
             onClick={handleNext}
-            className="rounded-lg bg-brand-600 text-white px-5 py-2 text-sm font-medium hover:bg-brand-700"
+            className="rounded-md bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-700"
           >
             {isLastCategory ? "See Results →" : "Next category →"}
           </button>

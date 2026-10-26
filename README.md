@@ -19,6 +19,19 @@ circular-economy-tool/
 - **API**: REST endpoints under `/api` (see below).
 - **Frontend**: 3-step wizard (Product → Assessment → Results), talks to the
   API over `fetch`.
+- **Visual identity**: an editorial, spacious landing and assessment flow
+  inspired by InnoLink's muted slate hero and blue calls to action, with
+  TU Braunschweig-inspired red used as a restrained accent.
+
+## Visual design
+
+The app uses InnoLink's public landing-page visual direction as inspiration
+without copying its layout or content: a calm slate-gray hero (`#96959F`),
+deep blue actions (`#2F5AAE`), warm near-white backgrounds, readable editorial
+headings, and spacious card layouts. A restrained red accent (`#A6192E`) nods
+to TU Braunschweig. The palette is defined centrally in
+`frontend/tailwind.config.js` and used through shared Tailwind tokens across
+the product, assessment, and results steps.
 
 ## Getting started
 
