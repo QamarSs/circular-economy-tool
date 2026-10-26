@@ -176,6 +176,8 @@ export default function CircularRadarProfile({ scores }: Props) {
 
           {categoryBands.map(({ categoryName, start, end, mid, color }) => {
             const position = polar((CATEGORY_INNER_RADIUS + CATEGORY_OUTER_RADIUS) / 2, mid);
+            const categoryLabelFontSize = 8.5;
+            const categoryLines = wrapLabel(categoryName, CATEGORY_OUTER_RADIUS - CATEGORY_INNER_RADIUS - 8, categoryLabelFontSize);
             return (
               <g key={`category-${categoryName}`}>
                 <path
@@ -190,11 +192,19 @@ export default function CircularRadarProfile({ scores }: Props) {
                   transform={`rotate(${uprightRotation(mid)} ${position.x} ${position.y})`}
                   textAnchor="middle"
                   dominantBaseline="middle"
-                  fontSize="8.5"
+                  fontSize={categoryLabelFontSize}
                   fontWeight="700"
                   fill="#252525"
                 >
-                  {categoryName}
+                  {categoryLines.map((line, index) => (
+                    <tspan
+                      key={`${categoryName}-line-${index}`}
+                      x={position.x}
+                      dy={index === 0 ? -((categoryLines.length - 1) * categoryLabelFontSize * 0.55) : categoryLabelFontSize * 1.1}
+                    >
+                      {line}
+                    </tspan>
+                  ))}
                 </text>
               </g>
             );
@@ -286,7 +296,7 @@ export default function CircularRadarProfile({ scores }: Props) {
             const labelFontSize = slices.length > 32 ? 7 : slices.length > 22 ? 7.5 : 8.5;
             const arcWidth = 2 * CRITERION_LABEL_RADIUS * Math.tan(Math.PI / slices.length) * 0.82;
             const lines = wrapLabel(score.criterionName, arcWidth, labelFontSize);
-            const rotation = uprightRotation(angle);
+            const rotation = uprightRotation(angle - 90);
 
             return (
               <text
